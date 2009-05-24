@@ -33,12 +33,12 @@ rake "gems:install", :sudo => true
 generate :clearance
 rake "db:migrate"
 
-environment "# clearance\r\nHOST = 'localhost'", :env => 'test'
-environment "# clearance\r\nHOST = 'localhost'", :env => 'development'
+environment "\r\n\r\n# clearance\r\nHOST = 'localhost'", :env => 'test'
+environment "\r\n\r\n# clearance\r\nHOST = 'localhost'", :env => 'development'
 
 domain = ask("What domain will this application run under?")
 
-environment "HOST = \"#{domain}\"", :env => 'production'
+environment "\r\n\r\n# clearance\r\nHOST = \"#{domain}\"", :env => 'production'
 append_file 'config/environment.rb', "\r\n\r\n# clearance\r\nDO_NOT_REPLY = 'donotreply@#{domain}'\r\n"
 
 generate :controller, "front", "index"
